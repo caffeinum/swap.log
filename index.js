@@ -25,7 +25,9 @@ ipfs.once('ready', () => ipfs.id((err, info) => {
   if (err) { throw err }
   console.log('IPFS node ready with address ' + info.id)
 
-  const roomName = 'swap.online'
+  const roomName = process.argv[2] || 'testnet.swap.online'
+  console.log('Logging messages from room ' + roomName)
+
   const room = Room(ipfs, roomName)
 
   room.on('peer joined', (peer) => console.log('peer ' + peer + ' joined'))
